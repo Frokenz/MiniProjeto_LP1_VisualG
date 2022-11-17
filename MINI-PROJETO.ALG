@@ -1,4 +1,4 @@
-algoritmo "mini-projeto"
+algoritmo "controle-clientes"
 // Aluno: Erick Rodrigues
 // Matéria de Linguagem de Programação 1
 // Professor: Bruno Torres
@@ -44,6 +44,150 @@ edit: inteiro
 // edit: variavel que recebe valor para edit de infos.
 
 
+// caso 1
+procedimento cad_client
+inicio
+se (n > 10)entao
+ escreval("Limite de clientes cadastrados atingido!")
+
+   senao
+   escreval("Digite o nome do cliente: ")
+   leia(nomes[n])
+   escreval("Digite o número do cliente: ")
+   leia(tel[n])
+
+   enquanto (tel[n]= 0) faca
+   escreval("Digite um número de telefone válido: ")
+   leia(tel[n])
+   fimenquanto
+
+   escreval("Digite o dispositivo do cliente: ")
+   leia(disp[n])
+   n <- n+1
+fimse
+
+
+escreval()
+escreval("===== Cadastro Feito com Sucesso =====")
+escreval("=== Aperte ENTER para voltar ao Menu ===")
+leia(enter)
+escreval()
+limpatela
+
+fimprocedimento
+
+//caso 2
+procedimento edit_client
+inicio
+
+escreval("Digite o ID do cliente que deseja editar: ")
+leia(y)
+escreval()
+limpatela
+
+para contador de y ate y faca
+escreval("========================================")
+escreval("Dados Atuais do cliente selecionado ")
+escreval("ID Cliente:", y)
+escreval("Nome do cliente atual: ",nomes[contador])
+escreval("Número de Telefone: ", tel[contador])
+escreval("Dispositivo: ", disp[contador])
+escreval("========================================")
+fimpara
+
+escreval()
+
+escreval("Qual dado você deseja editar?")
+escreval(" 1 - Nome do cliente: " )
+escreval(" 2 - Número de Telefone: ")
+escreval(" 3 - Dispositivo: ")
+leia(edit)
+escreval()
+escreval("Se deseja voltar ao menu principal aperte ENTER")
+limpatela
+escolha edit
+
+caso 1
+escreval("Digite o novo nome do cliente: ")
+leia(nomes[y])
+caso 2
+escreval("Digite o novo número de telefone: ")
+leia(tel[y])
+caso 3
+escreval("Digite a nova descrição do dispositivo: ")
+leia(disp[y])
+fimescolha
+
+escreval()
+escreval("===== Dados Editados com Sucesso! =====")
+escreval("=== Aperte ENTER para voltar ao Menu ===")
+leia(enter)
+limpatela
+
+fimprocedimento
+
+//caso 3
+procedimento client_list
+inicio
+
+para contador2 de 1 ate 1 faca
+se(disp[contador2] = " ") ou (nomes[contador2] = " ")ou(tel[contador2] = 0)entao
+escreval("===========================")
+escreval(" Nenhum Cliente Cadastrado ")
+escreval("===========================")
+fimse
+fimpara
+
+para contador de 1 ate 10 faca
+se (disp[contador] = " ") ou (nomes[contador] = " ") ou (tel[contador] = 0)entao
+escreva("")
+
+senao
+escreval("ID Cliente: ", contador)
+escreval("Cliente: ", nomes[contador])
+escreval("Número de Telefone: ", tel[contador])
+escreval("Dispositivo: ", disp[contador])
+escreval()
+escreval("------------------------------")
+
+fimse
+fimpara
+escreval()
+escreval("=== Aperte ENTER para voltar ao Menu ===")
+leia(enter)
+escreval()
+limpatela
+
+
+fimprocedimento
+
+//caso 4
+procedimento delet_client
+inicio
+
+
+
+fimprocedimento
+
+//caso 5
+procedimento reset_client
+inicio
+
+para contador de 1 ate 10 faca
+tel[contador] <- 0
+nomes[contador] <- " "
+disp[contador] <- " "
+n <- 1
+fimpara
+
+escreval("===== Cadastros Resetados com Sucesso =====")
+escreval("==== Aperte ENTER para voltar ao Menu ====")
+leia(enter)
+limpatela
+
+fimprocedimento
+//
+
 inicio
 
 // declaração de valores para algumas variaveis que irei utilizar como
@@ -77,106 +221,17 @@ escolha x
 caso 1
 // O caso 1 tem a função de cadastrar o cliente.
 
-se (n > 10)entao
-escreval("Limite de clientes cadastrados atingido!")
-senao
-escreval("Digite o nome do cliente: ")
-leia(nomes[n])
-escreval("Digite o número do cliente: ")
-leia(tel[n])
-enquanto (tel[n]= 0) faca
-escreval("Digite um número de telefone válido: ")
-leia(tel[n])
-fimenquanto
-escreval("Digite o dispositivo do cliente: ")
-leia(disp[n])
-n <- n+1
-fimse
-
-
-escreval()
-escreval("===== Cadastro Feito com Sucesso =====")
-escreval("=== Aperte Enter para voltar ao Menu ===")
-leia(enter)
-escreval()
-limpatela
+cad_client
 
 caso 2
 // O caso 2 tem como função de editar informações já depositadas no sistema.
-escreval("Digite o ID do cliente que deseja editar: ")
-leia(y)
-escreval()
-limpatela
-
-para contador de y ate y faca
-escreval("========================================")
-escreval("Dados Atuais do cliente selecionado ")
-escreval("ID Cliente:", y)
-escreval("Nome do cliente atual: ",nomes[contador])
-escreval("Número de Telefone: ", tel[contador])
-escreval("Dispositivo: ", disp[contador])
-escreval("========================================")
-fimpara
-
-escreval()
-
-escreval("Qual dado você deseja editar?")
-escreval(" 1 - Nome do cliente: " )
-escreval(" 2 - Número de Telefone: ")
-escreval(" 3 - Dispositivo: ")
-leia(edit)
-escreval()
-limpatela
-escolha edit
-
-caso 1
-escreval("Digite o novo nome do cliente: ")
-leia(nomes[y])
-caso 2
-escreval("Digite o novo número de telefone: ")
-leia(tel[y])
-caso 3
-escreval("Digite a nova descrição do dispositivo: ")
-leia(disp[y])
-fimescolha
-
-escreval()
-escreval("===== Dados Editados com Sucesso! =====")
-escreval("=== Aperte Enter para voltar ao Menu ===")
-leia(enter)
-limpatela
+edit_client
 
 caso 3
 // O caso 3 tem como função disponibilizar a lista de clientes já cadastrados
 // como suas informações necessárias para o atendimento e contato.
 
-para contador2 de 1 ate 1 faca
-se(disp[contador2] = " ") ou (nomes[contador2] = " ")ou(tel[contador2] = 0)entao
-escreval("===========================")
-escreval(" Nenhum Cliente Cadastrado ")
-escreval("===========================")
-fimse
-fimpara
-
-para contador de 1 ate 10 faca
-se (disp[contador] = " ") ou (nomes[contador] = " ") ou (tel[contador] = 0)entao
-escreva("")
-
-senao
-escreval("ID Cliente: ", contador)
-escreval("Cliente: ", nomes[contador])
-escreval("Número de Telefone: ", tel[contador])
-escreval("Dispositivo: ", disp[contador])
-escreval()
-escreval("------------------------------")
-
-fimse
-fimpara
-escreval()
-escreval("=== Aperte Enter para voltar ao Menu ===")
-leia(enter)
-escreval()
-limpatela
+client_list
 
 caso 4
 // O caso 4 tem como função de sobrepor os dados de um cliente já cadastrado
@@ -226,17 +281,7 @@ caso 5
 // O caso 5 é a opção que eu coloquei parar resetar o programa sem precisar
 // encerra-lo.
 
-para contador de 1 ate 10 faca
-tel[contador] <- 0
-nomes[contador] <- " "
-disp[contador] <- " "
-n <- 1
-fimpara
-
-escreval("===== Cadastros Resetados com Sucesso =====")
-escreval("==== Aperte Enter para voltar ao Menu ====")
-leia(enter)
-limpatela
+reset_client
 
 outrocaso
 // Caso o usuário digite um número diferente de 1..6 então será impresso
@@ -251,4 +296,5 @@ escreval("==============================================")
 fimse
 fimescolha
 ate (x = 6)
+escreval("# Obrigado pela preferencia")
 fimalgoritmo
