@@ -5,7 +5,8 @@ algoritmo "controle-clientes"
 
 // Exemplo do problema: trabalhei em uma lanhouse durante um ano, lá faziam
 // conserto de computadores, porém era muito mal organizado
-// os dados dos clientes eram anotados no papel de qualquer forma.
+// os dados dos clientes eram anotados no papel de qualquer forma e as vezes
+// perdiamos o papel pois era colado no gabinete com fita durex e desprendia.
 
 // Solução: criar um algoritmo que possibilita a criação de um cadastro
 // do cliente que deseja realizar um conserto/manutenção do dispositivo, com
@@ -14,13 +15,9 @@ algoritmo "controle-clientes"
 
 var
 
-// Sobre os vetores serem até o 11 é porque a posição 11 sempre estará vazia
-// e quando eu fiz o caso 4 na opção de apagar um cliente da fila, a fila
-// sempre andar e o vetor 10 receber o valor vazio do vetor 11.
-
-nomes: vetor [1..11] de caractere
-tel: vetor [1..11] de inteiro
-disp: vetor [1..11] de caractere
+nomes: vetor [1..10] de caractere
+tel: vetor [1..10] de inteiro
+disp: vetor [1..10] de caractere
 contador: inteiro
 contador2: inteiro
 n: inteiro
@@ -47,6 +44,16 @@ edit: inteiro
 // caso 1
 procedimento cad_client
 inicio
+
+// verificação de espaço vazio na fila de clientes, caso haja algum espaço
+// a variavel n responsavel pelas posições nos vetores recebe o valor do
+// contador.
+para contador de 10 ate 1 passo -1 faca
+se (tel[contador]=0)entao
+n <- contador
+fimse
+fimpara
+
 se (n > 10)entao
  escreval("Limite de clientes cadastrados atingido!")
 
@@ -65,7 +72,6 @@ se (n > 10)entao
    leia(disp[n])
    n <- n+1
 fimse
-
 
 escreval()
 escreval("===== Cadastro Feito com Sucesso =====")
@@ -165,7 +171,20 @@ fimprocedimento
 procedimento delet_client
 inicio
 
+escreval("Digite o ID do cliente: ")
+leia(idclient)
+se (idclient=0)entao
+escreval("Digite um ID válido: ")
+leia(idclient)
+fimse
+n <- idclient
 
+// essa parte é para substituir os dados por dados "vazios".
+para contador de idclient ate idclient faca
+tel[contador] <- 0
+nomes[contador] <- " "
+disp[contador] <- " "
+fimpara
 
 fimprocedimento
 
@@ -236,46 +255,8 @@ client_list
 caso 4
 // O caso 4 tem como função de sobrepor os dados de um cliente já cadastrado
 // por dados vazios/sem valores, dando a ilusão de "deletar" os dados.
-escreval("Digite o ID do cliente: ")
-leia(idclient)
-se (idclient=0)entao
-escreval("Digite um ID válido: ")
-leia(idclient)
-fimse
-n <- idclient
 
-// essa parte é para substituir os dados por dados "vazios".
-para contador de idclient ate idclient faca
-tel[contador] <- 0
-nomes[contador] <- " "
-disp[contador] <- " "
-fimpara
-
-// essa parte é para zerar o z para que eu possa substituir dados mais de uma
-// vez sem precisar fechar o programa e sem dar erro.
-se (z>11)entao
-z <- 1
-fimse
-
-// essa parte é para substituir os dados pelo próximo.
-// ainda está incompleto.
-para contador de 1 ate 10 faca
-  se (idclient = 1) entao
-  nomes[contador] <- nomes[z]
-  tel[contador] <- tel[z]
-  disp[contador] <- disp[z]
-  z <- z + 1
-
-// essa parte aqui em baixo é de teste tentando finalizar.
-//  senao
-//    para contador2 de idclient ate 10 faca
- //   z <- contador2+1
- //   nomes[contador2] <- nomes[z]
- //   tel[contador2] <- tel[z]
- //   disp[contador2] <- disp[z]
- //   fimpara
-  fimse
-fimpara
+delet_client
 
 caso 5
 // O caso 5 é a opção que eu coloquei parar resetar o programa sem precisar
@@ -296,5 +277,5 @@ escreval("==============================================")
 fimse
 fimescolha
 ate (x = 6)
-escreval("# Obrigado pela preferencia")
+escreval("# Obrigado pela preferencia!")
 fimalgoritmo
