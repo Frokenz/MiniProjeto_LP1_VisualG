@@ -28,7 +28,7 @@ idclient: inteiro
 enter: caractere
 edit: inteiro
 clients: inteiro
-no_client:inteiro
+
 
 // nomes: variavel que representa os nomes dos clientes.
 // tel: variavel que representa os números de contato dos clientes.
@@ -41,6 +41,7 @@ no_client:inteiro
 // idclient: identificador de cada posição na fila de atendimento.
 // enter: variavel para o usuario apertar o enter e retornar ao menu principal.
 // edit: variavel que recebe valor para edit de infos.
+// clients: variavel para mostrar quantidade de usuarios cadastrados.
 
 
 // caso 1
